@@ -234,8 +234,8 @@ class ReactExoplayerView extends FrameLayout implements
         };
 
         Activity activity = themedReactContext.getCurrentActivity();
-        activity.registerReceiver(pipReceiver, new IntentFilter("onPictureInPictureModeChanged"));
-        activity.registerReceiver(leaveReceiver, new IntentFilter("onUserLeaveHint"));
+        activity.registerReceiver(pipReceiver, new IntentFilter("onPictureInPictureModeChanged"), context.RECEIVER_EXPORTED);
+        activity.registerReceiver(leaveReceiver, new IntentFilter("onUserLeaveHint"), context.RECEIVER_EXPORTED);
     }
 
 
@@ -1446,7 +1446,7 @@ class ReactExoplayerView extends FrameLayout implements
                 && packageManager
                 .hasSystemFeature(
                         PackageManager.FEATURE_PICTURE_IN_PICTURE)) {
-            long videoPosition = player.getCurrentPosition();
+            // long videoPosition = player.getCurrentPosition();
             Activity activity = themedReactContext.getCurrentActivity();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 PictureInPictureParams.Builder params = new PictureInPictureParams.Builder();
